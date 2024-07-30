@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             v5.27.2
-// source: proto/student.proto
+// source: studentpb/student.proto
 
 package studentpb
 
@@ -36,7 +36,7 @@ func NewStudentServiceClient(cc grpc.ClientConnInterface) StudentServiceClient {
 
 func (c *studentServiceClient) GetStudent(ctx context.Context, in *GetStudentRequest, opts ...grpc.CallOption) (*Student, error) {
 	out := new(Student)
-	err := c.cc.Invoke(ctx, "/student.StudentService/GetStudent", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/studentpb.StudentService/GetStudent", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -45,7 +45,7 @@ func (c *studentServiceClient) GetStudent(ctx context.Context, in *GetStudentReq
 
 func (c *studentServiceClient) SetStudent(ctx context.Context, in *Student, opts ...grpc.CallOption) (*SetStudentResponse, error) {
 	out := new(SetStudentResponse)
-	err := c.cc.Invoke(ctx, "/student.StudentService/SetStudent", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/studentpb.StudentService/SetStudent", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -94,7 +94,7 @@ func _StudentService_GetStudent_Handler(srv interface{}, ctx context.Context, de
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/student.StudentService/GetStudent",
+		FullMethod: "/studentpb.StudentService/GetStudent",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(StudentServiceServer).GetStudent(ctx, req.(*GetStudentRequest))
@@ -112,7 +112,7 @@ func _StudentService_SetStudent_Handler(srv interface{}, ctx context.Context, de
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/student.StudentService/SetStudent",
+		FullMethod: "/studentpb.StudentService/SetStudent",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(StudentServiceServer).SetStudent(ctx, req.(*Student))
@@ -124,7 +124,7 @@ func _StudentService_SetStudent_Handler(srv interface{}, ctx context.Context, de
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var StudentService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "student.StudentService",
+	ServiceName: "studentpb.StudentService",
 	HandlerType: (*StudentServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -137,5 +137,5 @@ var StudentService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "proto/student.proto",
+	Metadata: "studentpb/student.proto",
 }
