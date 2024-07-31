@@ -43,10 +43,15 @@ message EnrollmentResponse {
     bool ok = 1;
 }
 
+message TakeTestRequest {
+    string answer = 1;
+}
+
 service TestService {
     rpc GetTest(GetTestRequest) returns (Test);
     rpc SetTest(Test) returns (SetTestResponse);
     rpc SetQuestions(stream Question) returns (SetQuestionResponse);
     rpc EnrollStudents(stream EnrollmentRequest) returns (EnrollmentResponse);
     rpc GetStudentsPerTest(GetStudentsPerTestRequest) returns (stream studentpb.Student);
+    rpc TakeTest(stream TakeTestRequest) returns (stream Question);
 }
